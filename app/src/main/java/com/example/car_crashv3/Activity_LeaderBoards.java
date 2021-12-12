@@ -35,7 +35,7 @@ import java.util.ArrayList;
 
             return view;
         }
-
+        // not working!!
         private void setScores(ArrayList<Score> scores) {
             for(int i=0; i<LEADERBOARDS_SIZE;i++){
 

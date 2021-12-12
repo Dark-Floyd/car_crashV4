@@ -350,8 +350,6 @@ public class Game {
         return false;
     }
 
-
-
     public void modifyGameByBundle(Bundle b) {
         if(b!=null) {
             setTiltMode(b.getBoolean(Game.MODE, false));
