@@ -56,8 +56,6 @@ public class Activity_Menu extends AppCompatActivity {
     }
     private void startLeaderboards(){
         Intent myIntent = new Intent(this, Activity_LeaderBoards.class);
-        if(optionsBundle!=null)
-            myIntent.putExtra(Activity_Options.BUNDLE, optionsBundle);
         startActivity(myIntent);
     }
     private void findViews(){
