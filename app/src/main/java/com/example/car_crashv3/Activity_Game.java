@@ -1,5 +1,4 @@
 package com.example.car_crashv3;
-
 import android.content.Context;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
@@ -9,7 +8,6 @@ import android.os.Bundle;
 import android.os.Vibrator;
 import android.view.View;
 import android.widget.ImageView;
-
 import androidx.appcompat.app.AppCompatActivity;
 
 
@@ -23,12 +21,10 @@ public class Activity_Game extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
-
         g=new Game((Vibrator) getSystemService(Context.VIBRATOR_SERVICE), this);
-
         findViews();
-
         initBundle();
+
         g.modifyGameByBundle(b);
         if(g.getSpeedMode()){
            g.setDelay(200);
@@ -37,23 +33,21 @@ public class Activity_Game extends AppCompatActivity {
         if(g.getTiltMode()){
             initSensor();
         }
-
         g.newGame();
-
         g.getButtonLeft().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 g.movePlayer(true);
+
             }
         });
-
         g.getButtonRight().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 g.movePlayer(false);
+
             }
         });
-
         g.getButtonMenu().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -74,27 +68,31 @@ public class Activity_Game extends AppCompatActivity {
         @Override
         public void onAccuracyChanged(Sensor sensor, int i) {}
     };
-
     private void movementWithTilt(float x, float y) {
         if (g.isTiltModeInitialized()) {
             float intervalX = g.getInitializedX()-x;
             float lastViewedIntervalX = g.getLastViewedX()-x;
             float intervalY = g.getInitializedY()-y;
-            if(intervalX>g.SENSITIVITY &&  lastViewedIntervalX>g.SENSITIVITY){ //move right
+
+            // right
+            if(intervalX>g.SENSITIVITY &&  lastViewedIntervalX>g.SENSITIVITY){
                 g.movePlayer(false);
                 g.setLastViewedX(x);
             }
-            else if(intervalX<-g.SENSITIVITY && lastViewedIntervalX<-g.SENSITIVITY){ //move left
+            // left
+            else if(intervalX<-g.SENSITIVITY && lastViewedIntervalX<-g.SENSITIVITY){
                 g.movePlayer(true);
                 g.setLastViewedX(x);
             }
-            else if(lastViewedIntervalX>g.SENSITIVITY || lastViewedIntervalX<-g.SENSITIVITY){ // movement was reset
+            else if(lastViewedIntervalX>g.SENSITIVITY || lastViewedIntervalX<-g.SENSITIVITY){
                 g.setLastViewedX(x);
             }
-            if(intervalY>g.SENSITIVITY*2){ //make game faster
+            //faster game
+            if(intervalY>g.SENSITIVITY*2){
                 g.setDelay(g.getDelay()-((int)intervalY)*3);
             }
-            else if(intervalY<-g.SENSITIVITY*1){ // make game slower
+            //slower game
+            else if(intervalY<-g.SENSITIVITY*1){
                 g.setDelay(g.getDelay()-((int)intervalY*12));
             }
 
@@ -106,12 +104,10 @@ public class Activity_Game extends AppCompatActivity {
             g.setTiltModeInitialized(true);
         }
     }
-
     private void initSensor() {
         sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         accSensor = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
     }
-
     private void initBundle() {
         if(getIntent().hasExtra(Activity_Options.BUNDLE)){
             b=getIntent().getExtras().getBundle(Activity_Options.BUNDLE);
@@ -122,7 +118,6 @@ public class Activity_Game extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        //g.onResume();
         g.startTicker();
         if(g.getTiltMode())
             sensorManager.registerListener(accSensorEventListener, accSensor, SensorManager.SENSOR_DELAY_UI);
@@ -131,7 +126,6 @@ public class Activity_Game extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
-        //g.onPause();
         g.stopTicker();
         if(g.getTiltMode())
             sensorManager.unregisterListener(accSensorEventListener);
@@ -139,7 +133,6 @@ public class Activity_Game extends AppCompatActivity {
 
     private void findViews(){
         g.setTimer(findViewById(R.id.odometer));
-//        g.setPoints(findViewById(R.id.points));
         g.setButtonLeft(findViewById(R.id.buttonLeft));
         g.setButtonRight(findViewById(R.id.buttonRight));
         g.setButtonMenu(findViewById(R.id.game_BTN_menu));
@@ -193,11 +186,5 @@ public class Activity_Game extends AppCompatActivity {
                 new Tile( findViewById(R.id.panel_IMG_tile75), Tile.EMPTY)
 
         }});
-
-
     }
-
-
-
-
 }

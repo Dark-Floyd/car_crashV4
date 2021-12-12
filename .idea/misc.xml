@@ -3,6 +3,10 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Adi/AndroidStudioProjects/car_crashV3/app/src/main/res/layout/activity_game.xml" value="0.35260416666666666" />
+        <entry key="..\:/Users/Adi/AndroidStudioProjects/car_crashV3/app/src/main/res/layout/activity_leaderboards.xml" value="0.20520833333333333" />
+        <entry key="..\:/Users/Adi/AndroidStudioProjects/car_crashV3/app/src/main/res/layout/activity_menu.xml" value="0.20520833333333333" />
+        <entry key="..\:/Users/Adi/AndroidStudioProjects/car_crashV3/app/src/main/res/layout/activity_options.xml" value="0.20520833333333333" />
         <entry key="..\:/car_crashV3/app/src/main/res/layout/activity_game.xml" value="0.17831813576494426" />
         <entry key="..\:/car_crashV3/app/src/main/res/layout/activity_main.xml" value="0.35260416666666666" />
         <entry key="..\:/car_crashV3/app/src/main/res/layout/activity_menu.xml" value="0.36277173913043476" />
